@@ -57,8 +57,8 @@ def searsh_view():
 
         return  data
 
-@app.route("/api/resent",methods=['GET','POST'])
-def resent_view():
+@app.route("/api/recent",methods=['GET','POST'])
+def recent_view():
     if request.method == 'POST':
         req_data = request.get_json()
         film = f"{req_data['film']} ({req_data['year']})"
@@ -72,29 +72,29 @@ def resent_view():
             imgUrl='None'
         now = datetime.datetime.now()
 
-        resentData = [film,artist,song,movieUrl,imgUrl,now.strftime("%Y-%m-%d %H:%M:%S")]
-        db_request.insert_resent(resentData)
+        recentData = [film,artist,song,movieUrl,imgUrl,now.strftime("%Y-%m-%d %H:%M:%S")]
+        db_request.insert_recent(recentData)
         # print(film)
         # print(song)
         return 'ok'
     if request.method == 'GET':
-        resent = {
+        recent = {
             'resultsCount': '0',
             'results': []
         }
-        """return 10 records from resent"""
-        resent_list = db_request.sql_request(f'Select film,artist,song,movieurl,imgurl from resent_search where imgurl <> "None" group by film,artist,song,movieurl,imgurl order by max(datetime) desc limit 10')
-        if len(resent_list) > 0:
-            for item in resent_list:
-                resent['resultsCount'] = len(resent_list)
-                resent['results'].append({'film': item['film'],
+        """return 10 records from recent"""
+        recent_list = db_request.sql_request(f'Select film,artist,song,movieurl,imgurl from recent_search where imgurl <> "None" group by film,artist,song,movieurl,imgurl order by max(datetime) desc limit 10')
+        if len(recent_list) > 0:
+            for item in recent_list:
+                recent['resultsCount'] = len(recent_list)
+                recent['results'].append({'film': item['film'],
                                'imgurl': item['imgurl'],
                                'movieurl': item['movieurl'],
                                'artist': item['artist'],
                                'song': item['song']})
         else:
-            return resent
-        return resent
+            return recent
+        return recent
 
 
 
