@@ -30,8 +30,9 @@ def get_movie_img_trailer (MOVIE_URL):
     response = requests.get(url, headers = headers)
     soup = BeautifulSoup(response.text,'html.parser')
     # print('now_films: ' + MOVIE_URL)
-    trailer_el = soup.find('div', {'class': 'title-overview'}).find('div', {'class': 'slate'})
+    trailer_el = soup.find('div', {'class': 'ipc-poster'})
+    # print ('dfdsfs:' + trailer_el)
     if trailer_el:
-        trailer_src = soup.find('div', {'class': 'title-overview'}).find('div', {'class': 'slate'}).find('img').get('src')
+        trailer_src = soup.find('div', {'class': 'ipc-poster'}).find('div', {'class': 'ipc-media--poster'}).find('img').get('src')
         if len(trailer_src)>0:
             return trailer_src
