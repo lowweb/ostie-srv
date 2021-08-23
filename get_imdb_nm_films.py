@@ -29,7 +29,7 @@ def get_media_info (ARTIST_ID,SEARCH_SONG):
     # text = read_file('data/sound.html')
     # soup = BeautifulSoup(text,'html.parser')
 
-    films_list = soup.find('div', {'id': 'filmography'}).find('div', {'class': 'filmo-category-section'}).find_all('div', {'class': 'filmo-row'})
+    films_list = soup.find('div', {'id': 'filmo-head-soundtrack'}).find_next('div', {'class': 'filmo-category-section'}).find_all('div', {'class': 'filmo-row'})
     for item in films_list:
         # id фильма
         m_id=item.get('id')[11:]
