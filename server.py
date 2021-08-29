@@ -7,10 +7,10 @@ import datetime
 
 app = Flask (__name__)
 #CORS(app)
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 #cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
-#cors = CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+#cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+cors = CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 # app.debug = true
 
 
