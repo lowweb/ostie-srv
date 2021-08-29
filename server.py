@@ -36,6 +36,8 @@ def searsh_view():
     song = request.args.get('song')
     media = request.args.get('media')
     artist_list = ''
+    user_agent = request.headers['User-Agent']
+    accept_lang = request.headers['Accept-Language']
 
     # если нет артиста и типа запроса то заворачиваем
     if not artist or not media:
@@ -50,7 +52,7 @@ def searsh_view():
         if len(artist_list)>0:
             for item in artist_list:
                 data['resultsCount'] = len(artist_list)
-                data['results'].append({'artist' : item['fullname'], 'artistData': get_media_info(item['nconst'], song)})
+                data['results'].append({'artist' : item['fullname'], 'artistData': get_media_info(item['nconst'], song,user_agent,accept_lang)})
         else:
             return { 'resultsCount': 0,
                      'results': []}
@@ -65,25 +67,28 @@ def recent_view():
         artist = req_data['artist']
         song = req_data['song']
         movieUrl = req_data['link']
+        locale = req_data['locale']
+        user_agent = request.headers['User-Agent']
 
         #parsing img insert result
-        imgUrl = get_movie_media.get_movie_img_trailer(movieUrl)
+        imgUrl = get_movie_media.get_movie_img_trailer(movieUrl,user_agent)
         if imgUrl is None:
             imgUrl='None'
         now = datetime.datetime.now()
 
-        recentData = [film,artist,song,movieUrl,imgUrl,now.strftime("%Y-%m-%d %H:%M:%S")]
+        recentData = [film,artist,song,movieUrl,imgUrl,now.strftime("%Y-%m-%d %H:%M:%S"),locale]
         db_request.insert_recent(recentData)
         # print(film)
         # print(song)
         return 'ok'
     if request.method == 'GET':
+        headers = request.headers
         recent = {
             'resultsCount': '0',
             'results': []
         }
         """return 10 records from recent"""
-        recent_list = db_request.sql_request(f'Select film,artist,song,movieurl,imgurl from recent_search where imgurl <> "None" group by film,artist,song,movieurl,imgurl order by max(datetime) desc limit 10')
+        recent_list = db_request.sql_request(f"Select film,artist,song,movieurl,imgurl from recent_search where imgurl <> 'None' and locale='{headers['locale']}' group by film,artist,song,movieurl,imgurl order by max(datetime) desc limit 10")
         if len(recent_list) > 0:
             for item in recent_list:
                 recent['resultsCount'] = len(recent_list)

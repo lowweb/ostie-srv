@@ -9,7 +9,7 @@ def get_movie_poster (MOVIE_ID):
       если песня не заданы ищем все саундтреки по исполнителю
       """
     url = f'https://www.imdb.com/title/{MOVIE_ID}/'
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36','Accept-Language': 'en-US,en;q=0.9'}
     response = requests.get(url, headers = headers)
     soup = BeautifulSoup(response.text,'html.parser')
     print('now_films: ' + MOVIE_ID)
@@ -20,13 +20,13 @@ def get_movie_poster (MOVIE_ID):
             return poster_src
 
 
-def get_movie_img_trailer (MOVIE_URL):
+def get_movie_img_trailer (MOVIE_URL, USER_AGENT):
     """
       input: код артиста из базы, песня(возможно null)
       если песня не заданы ищем все саундтреки по исполнителю
       """
     url = f'https://www.imdb.com{MOVIE_URL}/'
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'}
+    headers = {'User-Agent': USER_AGENT,'Accept-Language': 'en-US,en;q=0.9'}
     response = requests.get(url, headers = headers)
     soup = BeautifulSoup(response.text,'html.parser')
     # print('now_films: ' + MOVIE_URL)

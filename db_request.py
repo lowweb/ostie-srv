@@ -29,7 +29,7 @@ def insert_recent (data_array):
     input - массив данных кликнутой ссылки
     Перед началом вставки чистим таблицу
     """
-    query = "INSERT INTO recent_search(film,artist,song,movieurl,imgurl,datetime) VALUES(%s,%s,%s,%s,%s,%s)"
+    query = "INSERT INTO recent_search(film,artist,song,movieurl,imgurl,datetime,locale) VALUES(%s,%s,%s,%s,%s,%s,%s)"
     try:
         dbconfig = read_db_config()
         conn = MySQLConnection(**dbconfig)
