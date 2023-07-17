@@ -115,5 +115,5 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
     # print(len(m_results))
     # print(m_results)
         # print('==================================================')
-
+    driver.close()
     return m_results
