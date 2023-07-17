@@ -28,8 +28,9 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
     options.add_argument(f'user-agent={USER_AGENT}')
-    options.add_experimental_option('prefs', {'intl.accept_languages': ACCEPT_LANGUAGE})
+    # options.add_experimental_option('prefs', {'intl.accept_languages': ACCEPT_LANGUAGE})
     driver = webdriver.Chrome(executable_path="/home/devman/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver",options=options)
     # driver = webdriver.Chrome(options=options)
 
