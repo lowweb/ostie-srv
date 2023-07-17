@@ -25,7 +25,7 @@ option.add_argument('user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.
 option.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US'})
 # options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:109.0) Gecko/20100101 Firefox/115.0")
 #
-driver=webdriver.Chrome(options=option)
+driver = webdriver.Chrome(executable_path="/var/www/ostie.org/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver",options=option)
 
 # driver = webdriver.Chrome()
 
