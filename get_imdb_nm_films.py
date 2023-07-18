@@ -23,12 +23,14 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
       """
 
     url = f'https://www.imdb.com/name/{ARTIST_ID}/'
+    url = 'https://www.imdb.com/name/nm1736962/'
     #headers = {'User-Agent': USER_AGENT,'Accept-Language': ACCEPT_LANGUAGE}
     #response = requests.get(url, headers = headers)
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--window-size=1420,1080')
     options.add_argument(f'user-agent={USER_AGENT}')
     # options.add_experimental_option('prefs', {'intl.accept_languages': ACCEPT_LANGUAGE})
     driver = webdriver.Chrome(executable_path="/home/devman/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver",options=options)
