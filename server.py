@@ -26,7 +26,7 @@ def hello():
     options.add_argument("enable-automation")
     options.add_argument("--disable-infobars")
     options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(executable_path="/home/devman/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver",options=options)
     driver.get("https://www.google.com/")
     element_text = driver.page_source
     driver.quit()
