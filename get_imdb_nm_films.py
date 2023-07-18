@@ -1,14 +1,10 @@
 #import requests
 # from lxml import html
 from bs4 import BeautifulSoup
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 import time
-
-# import json
-# from get_movie_img import get_movie_poster
-
 
 def read_file(filename):
     with open(filename) as input_file:
@@ -23,19 +19,13 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
       """
 
     url = f'https://www.imdb.com/name/{ARTIST_ID}/'
-    url = 'https://www.imdb.com/name/nm1736962/'
     #headers = {'User-Agent': USER_AGENT,'Accept-Language': ACCEPT_LANGUAGE}
     #response = requests.get(url, headers = headers)
     options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--window-size=1420,1080')
+    options.add_argument("-headless")
     options.add_argument(f'user-agent={USER_AGENT}')
     # options.add_experimental_option('prefs', {'intl.accept_languages': ACCEPT_LANGUAGE})
-    driver = webdriver.Chrome(executable_path="/home/devman/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver",options=options)
-    # driver = webdriver.Chrome(options=options)
-
+    driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver",options=options)
     driver.get(url)
     btnElement = driver.find_element(By.ID, "name-filmography-filter-soundtrack")
     driver.execute_script("arguments[0].click();", btnElement);

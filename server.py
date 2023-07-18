@@ -5,9 +5,6 @@ import db_request
 import get_movie_media
 import datetime
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
 app = Flask (__name__)
 #CORS(app)
 #cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -17,20 +14,6 @@ cors = CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 # app.debug = true
 
 
-@app.route('/api/hello')
-def hello():
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")
-    options.add_argument("enable-automation")
-    options.add_argument("--disable-infobars")
-    options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Chrome(executable_path="/home/devman/.wdm/drivers/chromedriver/linux64/114.0.5735.90/chromedriver",options=options)
-    driver.get("https://www.google.com/")
-    element_text = driver.page_source
-    driver.quit()
-    return element_text
 
 @app.route('/api/info')
 def main_view():
