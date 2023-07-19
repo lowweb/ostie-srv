@@ -17,7 +17,6 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
       """
 
     url = f'https://www.imdb.com/name/{ARTIST_ID}/'
-    m_results = []
     #headers = {'User-Agent': USER_AGENT,'Accept-Language': ACCEPT_LANGUAGE}
     #response = requests.get(url, headers = headers)
     options = Options()
@@ -28,6 +27,7 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
     driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver",options=options)
     driver.get(url)
 
+    m_results = []
     try:
         btnElement = driver.find_element(By.ID, "name-filmography-filter-soundtrack")
         # if button @soundtrack do not press
