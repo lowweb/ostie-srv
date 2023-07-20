@@ -19,7 +19,7 @@ options.add_argument("-headless")
 options.add_argument('-no-sandbox')
 # options.add_argument("-profile")
 # options.add_argument("/var/opt/.mozilla")
-options.profile = "/var/opt/Firefox/Profiles/1amwoj91.testing"
+# options.profile = "/var/opt/Firefox/Profiles/1amwoj91.testing"
 # profile = webdriver.FirefoxProfile('/var/opt')
 # options.add_argument(f'user-agent={USER_AGENT}')
 # options.set_preference('intl.accept_languages', ACCEPT_LANGUAGE)
