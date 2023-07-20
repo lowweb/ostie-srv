@@ -20,10 +20,9 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
     #headers = {'User-Agent': USER_AGENT,'Accept-Language': ACCEPT_LANGUAGE}
     #response = requests.get(url, headers = headers)
     options = Options()
-    options.add_argument("--headless")
-    options.add_argument('--no-sandbox')
-    options.add_argument("-profile")
-    options.add_argument("/var/opt/.mozilla")
+    options.add_argument("-headless")
+    options.add_argument('-no-sandbox')
+    options.profile = "/home/foxman"
     options.add_argument(f'user-agent={USER_AGENT}')
     options.set_preference('intl.accept_languages', ACCEPT_LANGUAGE)
     driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver",options=options)
