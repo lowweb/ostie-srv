@@ -15,13 +15,14 @@ def read_file(filename):
     return text
 
 options = Options()
-options.add_argument("--headless")
-options.add_argument('--no-sandbox')
-options.add_argument("-profile")
-options.add_argument("/var/opt/.mozilla")
+options.add_argument("-headless")
+options.add_argument('-no-sandbox')
+# options.add_argument("-profile")
+# options.add_argument("/var/opt/.mozilla")
+profile = webdriver.FirefoxProfile('/var/opt')
 # options.add_argument(f'user-agent={USER_AGENT}')
 # options.set_preference('intl.accept_languages', ACCEPT_LANGUAGE)
-driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver",options=options)
+driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver",profile=profile,options=options)
 # driver = webdriver.Firefox(options=options)
 
 url = 'https://www.imdb.com/name/nm3058944'
