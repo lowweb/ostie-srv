@@ -25,7 +25,8 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
     # options.profile = "/home/foxman"
     options.add_argument(f'user-agent={USER_AGENT}')
     options.set_preference('intl.accept_languages', ACCEPT_LANGUAGE)
-    driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver",options=options)
+    #driver = webdriver.Firefox(executable_path="/usr/local/bin/geckodriver",options=options)
+    driver = webdriver.Firefox(options=options)
     driver.get(url)
 
     m_results = []
@@ -80,14 +81,16 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
                 'class': 'ipc-metadata-list-summary-item__li'})
             for block in songs_blocks:
                 block = block.text
-                if ('performer:' in block):
+                if ('performer:' in block or 'writer:' in block):
+                    type_of_song = block[0:block.find(':')].strip()
                     songs = block.strip().split(',')
                     for song in songs:
                         lf_pos = song.find('"') + 1
                         rgh_pos = song[lf_pos:].find('"') + lf_pos
                         if lf_pos and rgh_pos:
                             song = song[lf_pos:rgh_pos].strip()
-                            m_songs.append(song)
+                            if (song!= ''):
+                                m_songs.append(''.join([song,'(',type_of_song,')']))
                             songs_in_uppercase.append(song.upper())
             if (len(SEARCH_SONG) != 0 and SEARCH_SONG.upper() in songs_in_uppercase):
                 m_results.append({'mId': m_id,
