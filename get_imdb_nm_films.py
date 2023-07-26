@@ -108,4 +108,5 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
                                   'mEpisodes': m_episodes,
                                   'mSongs': m_songs})
     driver.close()
+    driver.quit()
     return m_results
