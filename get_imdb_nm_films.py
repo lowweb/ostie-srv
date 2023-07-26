@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 import time
+import os
+
 
 # def read_file(filename):
 #     with open(filename) as input_file:
@@ -15,7 +17,7 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
       input: код артиста из базы, песня(возможно null)
       если песня не заданы ищем все саундтреки по исполнителю
       """
-
+    os.system("killall firefox")
     url = f'https://www.imdb.com/name/{ARTIST_ID}/'
     #headers = {'User-Agent': USER_AGENT,'Accept-Language': ACCEPT_LANGUAGE}
     #response = requests.get(url, headers = headers)
