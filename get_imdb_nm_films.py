@@ -89,7 +89,7 @@ def get_media_info (ARTIST_ID,SEARCH_SONG,USER_AGENT,ACCEPT_LANGUAGE):
                         rgh_pos = song[lf_pos:].find('"') + lf_pos
                         if lf_pos and rgh_pos:
                             song = song[lf_pos:rgh_pos].strip()
-                            if (song!= ''):
+                            if (len(song)>0):
                                 m_songs.append(''.join([song,'(',type_of_song,')']))
                             songs_in_uppercase.append(song.upper())
             if (len(SEARCH_SONG) != 0 and SEARCH_SONG.upper() in songs_in_uppercase):
